@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Container } from 'reactstrap';
 import { useSelector, useDispatch } from "react-redux";
-import { addItem, removeItem } from "../feature/items/itemsSlice.js"
+import { fetchItems, postItems } from "../feature/items/itemsSlice.js"
+import { showAction } from '../feature/modal/modalSlice.js';
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -10,23 +11,30 @@ export default function AddItems() {
     const dispatch = useDispatch()
     const [ item, setItem ] = useState('')
     const handleSubmit = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
 
-        dispatch(addItem({ id: uuidv4(), name: item }))
+        // dispatch(postItems({ name: item }, dispatch))
 
-        setItem('');
+        // setItem('');
+
+
+        dispatch(showAction);
 
 
     }
     return (
         <Container>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <label htmlFor="item"></label>
                 <input required type="text" placeholder='Add Item' value={item} name="item"
                     onChange={e => setItem(e.target.value)}
                 />
                 <Button type="submit" >Add Item</Button>
-            </form>
+            </form> */}
+
+            <Button outline color='primary' onClick={() => {
+                dispatch(showAction());
+            }}>Add Item</Button>
         </Container>
     )
 }

@@ -1,15 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-
+const cors = require("cors")
+const config = require("config")
 const items = require("./routes/api/items")
 
 
-const db = require("./config/keys.js").mongoURI;
+// const db = require("./config/keys.js").mongoURI;
+const db = config.get("mongoURI")
 const app = express();
 
+app.use(cors())
 
-app.use(bodyParser.json())
+
+app.use(express.json())
 
 console.log(db);
 mongoose.connect(db).
@@ -20,7 +23,12 @@ mongoose.connect(db).
 
 
 
-app.use("/api/items", items)
+app.use("/api/items", items);
+app.use("/api/user",
+    // (req, res) => { res.json({ connected: "Hiii" }) }
+    require("./routes/api/users")
+
+)
 
 const port = process.env.PORT || 5001;
 

@@ -21,5 +21,18 @@ router.post("/", (req, res) => {
 
 })
 
+router.delete("/:id", (req, res) => {
+    Item.findById(req.params.id)
+        .then(i => {
+            console.dir(i);
+            i.deleteOne()
+                .then(() => res.json({ success: true }))
+        }
 
+        )
+        .catch(e => {
+            console.log(e);
+            res.status(500).json({ success: false })
+        })
+})
 module.exports = router;
