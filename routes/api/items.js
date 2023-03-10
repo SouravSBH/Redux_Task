@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const checkToken = require("../../middleware/checkToken")
 
 const Item = require("../../models/item");
 
@@ -12,16 +13,18 @@ router.get("/", (req, res) => {
 })
 
 //@route Post api/items
-router.post("/", (req, res) => {
+router.post("/", checkToken, (req, res) => {
+
     const newItem = new Item({
         name: req.body.name,
+        // addedBy: req.user.id,
 
     })
-    newItem.save().then((item) => res.json(item))
+    newItem.save().then((item) => res.json({ ...item._doc, addedBy: req.user.id }))
 
 })
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", checkToken, (req, res) => {
     Item.findById(req.params.id)
         .then(i => {
             console.dir(i);

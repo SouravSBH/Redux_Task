@@ -24,9 +24,9 @@ mongoose.connect(db).
 
 
 app.use("/api/items", items);
-app.use("/api/user",
+app.use("/api/auth",
     // (req, res) => { res.json({ connected: "Hiii" }) }
-    require("./routes/api/users")
+    require("./routes/api/auth")
 
 )
 
