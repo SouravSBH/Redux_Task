@@ -10,18 +10,18 @@ export default function AddItems() {
     const items = useSelector(state => state.items.items);
     const dispatch = useDispatch()
     const [ item, setItem ] = useState('')
-    const handleSubmit = (event) => {
-        // event.preventDefault();
+    // const handleSubmit = (event) => {
+    //     // event.preventDefault();
 
-        // dispatch(postItems({ name: item }, dispatch))
+    //     // dispatch(postItems({ name: item }, dispatch))
 
-        // setItem('');
-
-
-        dispatch(showAction);
+    //     // setItem('');
 
 
-    }
+    //     dispatch(showAction);
+
+
+    // }
     return (
         <Container>
             {/* <form onSubmit={handleSubmit}>

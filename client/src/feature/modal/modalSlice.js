@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    showModal: false
+    showItemForm: false,
+    showSignUp: false,
+    showSignIn: false,
 }
 
 
@@ -11,11 +13,23 @@ const modalSlice = createSlice({
     initialState,
     reducers: {
         showAction: (state) => {
-            state.showModal = true;
+            state.showItemForm = true;
         },
         hideAction: (state) => {
-            state.showModal = false;
-        }
+            state.showItemForm = false;
+            state.showSignUp = false;
+            state.showSignIn = false;
+        },
+
+        showSignUpAction: (state) => {
+            state.showSignUp = true;
+        },
+        showSignInAction: (state) => {
+            state.showSignIn = true;
+        },
+        // hideSignUpAction: (state) => {
+        //     state.showSignUp = false;
+        // }
 
     }
 
@@ -24,4 +38,4 @@ const modalSlice = createSlice({
 
 export default modalSlice.reducer;
 
-export const { showAction, hideAction } = modalSlice.actions;
+export const { showAction, hideAction, showSignUpAction, showSignInAction } = modalSlice.actions;

@@ -21,7 +21,7 @@ const fetchItems = createAsyncThunk("items/fetchItems", () => {
 const postItems = createAsyncThunk("items/postItems", (item, { dispatch }) => {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', "x-auth-token": localStorage.getItem("jwt_token") },
         body: JSON.stringify(item)
     };
     return fetch('http://localhost:5001/api/items/', requestOptions)
@@ -38,6 +38,8 @@ const deleteItem = createAsyncThunk("items/deleteItem", (id, { dispatch }) => {
 
     fetch('http://localhost:5001/api/items/' + id, {
         method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', "x-auth-token": localStorage.getItem("jwt_token") },
+
     })
         .then(res => {
             dispatch(fetchItems())

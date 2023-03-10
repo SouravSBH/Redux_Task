@@ -22,5 +22,13 @@
 
 input:focus-visible {
   outline: none;
+
+}
+
+input {
   padding-inline: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  border: none;
+
 }

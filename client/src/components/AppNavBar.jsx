@@ -77,14 +77,21 @@ import {
     Nav,
     NavItem,
     Container,
-    NavLink
+    NavLink,
+    Button
 } from 'reactstrap';
 import React, { useState } from 'react'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { showSignUpAction } from "../feature/modal/modalSlice"
+import { signOut } from '../feature/user/userSlice';
 export default function AppNavBar() {
     const [ isOpen, setIsOpen ] = useState(true);
 
     const handleToggle = () => setIsOpen(!isOpen);
+
+
+    const dispatch = useDispatch();
+
 
     return (
         <div><Navbar color="dark" dark expand="sm" className="mb-5">
@@ -93,10 +100,21 @@ export default function AppNavBar() {
                 <NavbarToggler onClick={handleToggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                        <NavItem><NavLink>aa</NavLink></NavItem>
-                        <NavItem><NavLink>aa</NavLink></NavItem>
-                        <NavItem><NavLink>aa</NavLink></NavItem>
-                        <NavItem><NavLink>aa</NavLink></NavItem>
+                        <Button
+                            onClick={() => {
+                                console.log(showSignUpAction())
+                                dispatch(showSignUpAction())
+                            }}
+
+                            outline color='primary'>Sign Up</Button>
+
+                        <Button
+                            onClick={() => {
+                                console.log(signOut)
+                                dispatch(signOut())
+                            }}
+
+                            outline color='primary'>Sign Out</Button>
 
 
                     </Nav>

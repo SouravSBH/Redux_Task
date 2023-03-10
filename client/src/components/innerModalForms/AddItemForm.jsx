@@ -5,8 +5,8 @@ import { hideAction, showAction } from '../../feature/modal/modalSlice.js';
 import { postItems } from '../../feature/items/itemsSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import react, { useState } from 'react'
-export default function InnerModal() {
-    const items = useSelector(state => state.items.items);
+export default function AddItemForm() {
+    // const items = useSelector(state => state.items.items);
     const dispatch = useDispatch()
     const [ item, setItem ] = useState('')
     const handleSubmit = (event) => {
@@ -32,7 +32,7 @@ export default function InnerModal() {
                 }} required type="text" placeholder='Add Item' value={item} name="item"
                     onChange={e => setItem(e.target.value)}
                 />
-                <Button type="submit" >Add Item</Button>
+                <Button type="submit" color='primary' >Add Item</Button>
             </form>
         </div>
     )

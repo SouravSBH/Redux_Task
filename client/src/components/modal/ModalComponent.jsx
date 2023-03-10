@@ -5,15 +5,15 @@ import {
     showAction, hideAction
 } from '../../feature/modal/modalSlice';
 
-import InnerModal from './InnerModal';
-function ModalComponent() {
-    const showModal = useSelector(state => state.modal.showModal);
+import AddItemForm from '../innerModalForms/AddItemForm';
+function ModalComponent(props) {
+    const showModal = useSelector(state => state.modal);
     const dispatch = useDispatch()
 
     return (
         <>
             {
-                showModal && <div
+                Object.values(showModal).some(val => val === true) && <div
                     onClick={(e) => {
                         // e.stopPropagation()
                         dispatch(hideAction());
@@ -28,7 +28,7 @@ function ModalComponent() {
                         e.stopPropagation()
 
                     }} className={`${styles.inner} `}>
-                        <InnerModal></InnerModal>
+                        {props.children}
                     </div>
                 </div>
             }

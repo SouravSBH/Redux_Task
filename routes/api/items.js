@@ -17,7 +17,7 @@ router.post("/", checkToken, (req, res) => {
 
     const newItem = new Item({
         name: req.body.name,
-        // addedBy: req.user.id,
+        addedBy: req.user.id,
 
     })
     newItem.save().then((item) => res.json({ ...item._doc, addedBy: req.user.id }))

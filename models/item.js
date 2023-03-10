@@ -11,6 +11,10 @@ const ItemSchema = new Schema(
         date: {
             type: Date,
             default: Date.now
+        },
+        addedBy: {
+            type: String,
+            require: true
         }
     }
 )

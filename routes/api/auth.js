@@ -11,7 +11,7 @@ router.get("/", checkToken, (req, res) => {
     User.findById(req.user.id)
         .select("-password")
 
-        .then(user => res.json(user))
+        .then(user => res.json({ user: { ...user._doc, id: user._id } }))
 })
 
 router.post("/signin", (req, res) => {
