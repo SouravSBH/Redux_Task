@@ -1,0 +1,25 @@
+.error {
+    color: red;
+    animation: error 7s ease forwards;
+    /* display: none; */
+}
+
+@keyframes error {
+    0% {
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+
+    }
+}

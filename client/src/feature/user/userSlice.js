@@ -38,7 +38,36 @@ const signup = createAsyncThunk(
             return response.json();
         }
         else {
-            throw new Error(response.statusText);
+            const err = await response.json()
+            throw new Error(err.msg); zz
+        }
+    }
+);
+
+const signin = createAsyncThunk(
+    'auth/signin',
+    async (user, { dispatch }) => {
+        // Use object shorthand to create the request body
+        // console.log({ second })
+        const raw = JSON.stringify(user);
+        console.log(raw)
+        // Use object shorthand to create the options object
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: raw,
+            redirect: 'follow'
+        };
+
+        // Use fetch to make the request and return the response text or throw an error
+        const response = await fetch("http://localhost:5001/api/auth/signin", requestOptions);
+        if (response.ok) {
+            dispatch(hideAction())
+            return response.json();
+        }
+        else {
+            const err = await response.json()
+            throw new Error(err.msg); zz
         }
     }
 );
@@ -79,22 +108,46 @@ const userSlice = createSlice({
             state.token = "";
 
 
+        },
+        clearError: (state) => {
+            state.error = ""
         }
 
     },
 
     extraReducers: builder => {
 
+        //signup
         builder.addCase(signup.pending, (state, action) => {
             state.loading = true;
         })
         builder.addCase(signup.rejected, (state, action) => {
             console.log("error");
-            console.dir(action);
+            console.dir(action.error.message);
             state.loading = false;
-            state.error = "Rejected";
+            state.error = action.error.message;
         })
         builder.addCase(signup.fulfilled, (state, action) => {
+            console.log(action);
+            state.loading = false;
+            state.error = "";
+            state.user = action.payload.user;
+            state.token = action.payload.token;
+            localStorage.setItem("jwt_token", action.payload.token)
+        })
+
+        //signin
+
+        builder.addCase(signin.pending, (state, action) => {
+            state.loading = true;
+        })
+        builder.addCase(signin.rejected, (state, action) => {
+            console.log("error");
+            console.dir(action.error.message);
+            state.loading = false;
+            state.error = action.error.message;
+        })
+        builder.addCase(signin.fulfilled, (state, action) => {
             console.log(action);
             state.loading = false;
             state.error = "";
@@ -129,5 +182,5 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer;
-const { signOut } = userSlice.actions;
-export { signOut, signup, getUserWithToken };
+const { signOut, clearError } = userSlice.actions;
+export { signOut, signup, signin, getUserWithToken, clearError };

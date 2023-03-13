@@ -82,7 +82,7 @@ import {
 } from 'reactstrap';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { showSignUpAction } from "../feature/modal/modalSlice"
+import { showSignUpAction, showSignInAction } from "../feature/modal/modalSlice"
 import { signOut } from '../feature/user/userSlice';
 export default function AppNavBar() {
     const [ isOpen, setIsOpen ] = useState(true);
@@ -100,6 +100,13 @@ export default function AppNavBar() {
                 <NavbarToggler onClick={handleToggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
+                        <Button
+                            onClick={() => {
+                                // console.log(showSignUpAction())
+                                dispatch(showSignInAction())
+                            }}
+
+                            outline color='primary'>Sign In</Button>
                         <Button
                             onClick={() => {
                                 console.log(showSignUpAction())

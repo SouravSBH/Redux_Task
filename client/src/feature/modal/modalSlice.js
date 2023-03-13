@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+
 const initialState = {
     showItemForm: false,
     showSignUp: false,
@@ -15,7 +16,7 @@ const modalSlice = createSlice({
         showAction: (state) => {
             state.showItemForm = true;
         },
-        hideAction: (state) => {
+        hideAction: (state, { dispatch }) => {
             state.showItemForm = false;
             state.showSignUp = false;
             state.showSignIn = false;

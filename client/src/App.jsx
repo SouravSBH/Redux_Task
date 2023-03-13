@@ -8,8 +8,10 @@ import ModalComponent from './components/modal/ModalComponent'
 import AddItemForm from './components/innerModalForms/AddItemForm'
 import { useDispatch, useSelector, } from 'react-redux'
 import SignUpForm from './components/innerModalForms/SignUpForm'
+
 import Profile from "./components/profile/Profile"
 import { getUserWithToken } from "./feature/user/userSlice"
+import SignInForm from "./components/innerModalForms/SignInForm"
 
 function App() {
   const show = useSelector(state => state.modal);
@@ -30,6 +32,7 @@ function App() {
       <ModalComponent>
         {show.showItemForm && <AddItemForm></AddItemForm>}
         {show.showSignUp && <SignUpForm></SignUpForm>}
+        {show.showSignIn && <SignInForm></SignInForm>}
       </ModalComponent>
       <div className='app'>
         <AppNavBar></AppNavBar>

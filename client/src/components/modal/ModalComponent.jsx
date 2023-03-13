@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styles from './ModalComponent.module.css';
+import { clearError } from "../../feature/user/userSlice"
 import { useDispatch, useSelector } from 'react-redux';
 import {
     showAction, hideAction
@@ -17,6 +18,8 @@ function ModalComponent(props) {
                     onClick={(e) => {
                         // e.stopPropagation()
                         dispatch(hideAction());
+                        dispatch(clearError())
+
                         console.log("outer click")
                     }}
                     className={`${styles.outer} `}>
