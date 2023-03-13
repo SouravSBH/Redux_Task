@@ -88,11 +88,12 @@ export default function AppNavBar() {
     const [ isOpen, setIsOpen ] = useState(true);
 
     const handleToggle = () => setIsOpen(!isOpen);
+    const user = useSelector(state => state.user)
 
 
     const dispatch = useDispatch();
 
-
+    console.dir(user)
     return (
         <div><Navbar color="dark" dark expand="sm" className="mb-5">
             <Container>
@@ -100,28 +101,30 @@ export default function AppNavBar() {
                 <NavbarToggler onClick={handleToggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                        <Button className='m-1'
-                            onClick={() => {
-                                // console.log(showSignUpAction())
-                                dispatch(showSignInAction())
-                            }}
+                        {user.user && Object.keys(user.user).length == 0 ? <>
+                            <Button className='m-1'
+                                onClick={() => {
+                                    // console.log(showSignUpAction())
+                                    dispatch(showSignInAction())
+                                }}
+                                outline color='primary'>Sign In</Button>
+                            <Button className='m-1'
+                                onClick={() => {
+                                    console.log(showSignUpAction())
+                                    dispatch(showSignUpAction())
+                                }}
+                                outline color='primary'>Sign Up</Button>
+                        </> :
+                            <Button className='m-1'
+                                onClick={() => {
+                                    console.log(signOut)
+                                    dispatch(signOut())
+                                }}
 
-                            outline color='primary'>Sign In</Button>
-                        <Button className='m-1'
-                            onClick={() => {
-                                console.log(showSignUpAction())
-                                dispatch(showSignUpAction())
-                            }}
+                                outline color='primary'>Sign Out</Button>
+                        }
 
-                            outline color='primary'>Sign Up</Button>
 
-                        <Button className='m-1'
-                            onClick={() => {
-                                console.log(signOut)
-                                dispatch(signOut())
-                            }}
-
-                            outline color='primary'>Sign Out</Button>
 
 
                     </Nav>
