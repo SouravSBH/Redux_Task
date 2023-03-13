@@ -1,6 +1,6 @@
 .error {
     color: red;
-    animation: error 7s ease forwards;
+    /* animation: error 7s ease forwards; */
     /* display: none; */
 }
 
@@ -22,4 +22,16 @@
         opacity: 0;
 
     }
+}
+
+
+p {
+    font-size: 2rem;
+}
+
+p>span {
+    text-decoration: underline;
+    color: blueviolet;
+    cursor: pointer;
+    ;
 }

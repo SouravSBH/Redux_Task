@@ -32,3 +32,8 @@ input {
   border: none;
 
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}

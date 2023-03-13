@@ -100,14 +100,14 @@ export default function AppNavBar() {
                 <NavbarToggler onClick={handleToggle} />
                 <Collapse isOpen={isOpen} navbar>
                     <Nav className="ml-auto" navbar>
-                        <Button
+                        <Button className='m-1'
                             onClick={() => {
                                 // console.log(showSignUpAction())
                                 dispatch(showSignInAction())
                             }}
 
                             outline color='primary'>Sign In</Button>
-                        <Button
+                        <Button className='m-1'
                             onClick={() => {
                                 console.log(showSignUpAction())
                                 dispatch(showSignUpAction())
@@ -115,7 +115,7 @@ export default function AppNavBar() {
 
                             outline color='primary'>Sign Up</Button>
 
-                        <Button
+                        <Button className='m-1'
                             onClick={() => {
                                 console.log(signOut)
                                 dispatch(signOut())

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Container } from 'reactstrap';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchItems, postItems } from "../feature/items/itemsSlice.js"
-import { showAction } from '../feature/modal/modalSlice.js';
+import { showAction, showSignInAction } from '../feature/modal/modalSlice.js';
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -32,8 +32,13 @@ export default function AddItems() {
                 <Button type="submit" >Add Item</Button>
             </form> */}
 
-            <Button outline color='primary' onClick={() => {
-                dispatch(showAction());
+            <Button className='mb-3' outline color='primary' onClick={() => {
+                if (localStorage.getItem("jwt_token")) {
+                    dispatch(showAction());
+                }
+                else {
+                    dispatch(showSignInAction())
+                }
             }}>Add Item</Button>
         </Container>
     )
